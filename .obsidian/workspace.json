@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "data_collection_list.md",
+                "file": "VirtualME-Demo.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "data_collection_list.md",
+                "file": "VirtualME-Demo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "data_collection_list.md",
+                "file": "VirtualME-Demo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,12 +125,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "data_collection_list.md"
+                "file": "VirtualME-Demo.md"
               }
+            }
+          },
+          {
+            "id": "2bc7ec8e329adf66",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -143,11 +151,15 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "cec4a3015b95e97f",
   "lastOpenFiles": [
-    "data_collection_list.md"
+    "未命名.canvas",
+    "VirtualME-Demo.md",
+    "Pasted image 20241030200653.png",
+    "Pasted image 20241030200528.png"
   ]
 }
