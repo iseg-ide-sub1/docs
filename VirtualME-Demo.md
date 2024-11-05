@@ -1,24 +1,28 @@
 
 # VirtualME-Demo
-## 1. 数据收集插件
+## 1. 使用方式
 
 ### 1.1. 基本介绍
 基于VSCode开发了一个插件，可以监听用户在VSCode的操作，并为每种操作创建日志项，为后续监控和分析他们在开发环境中的行为模式、预测它们的意图提供数据基础。
 
 ### 1.2. 使用方式
 
-1. 在编辑器中，打开 `src/extension.ts` 文件，然后按 `F5` 或者从命令面板运行`Debug: Start Debugging`。这将编译并运行扩展程序在一个新的扩展开发主机窗口中；
-2. 运行命令`VirtualME Demo`就可以启动插件；
-3. 运行的过程中，收集到的动作会实时log到控制台；
-	![[Pasted image 20241030200528.png]]
+1. 首次克隆仓库后，在控制台执行 `npm install` 安装项目依赖
+2. 在编辑器中，打开 `src/extension.ts` 文件，然后按 `F5` 或者从命令面板运行`Debug: Start Debugging`。这将编译并运行扩展程序在一个新的扩展开发主机窗口中；
+3. 按`Ctrl+Shift+P`（Windows）调出命令面板，运行命令`VirtualME Demo`就可以启动插件收集数据；
+4. 运行的过程中，收集到的动作会实时log到控制台；
+	![](./img/01.png)
 
 4. 停止运行后，动作序列会被输出到一个json文件中。
-	![[Pasted image 20241030200653.png]]
+	![](./img/02.png)
 
 
 ## 2. 数据结构
 
 插件开发时自定义一个`LogItem`类用于记录每一个操作动作，并实现`toString`和`toJSON`方法，用于统一输出，以下是一个输出的json示例。
+
+![](./img/03.png)
+
 ```json
 {
 	"id": 37,
@@ -109,6 +113,7 @@ enum EventType {
 name: string
 type: ArtiFactType
 hierarchy?: ArtiFact[]
+public context?: Context
 ```
 
 #### 2.4.1. `name: string`
