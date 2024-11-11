@@ -1,0 +1,5 @@
+# Obsidian 配置文件，放在本地即可
+.obsidian
+
+#  macOS 系统的隐藏文件
+.DS_Store

@@ -184,3 +184,304 @@ class OuterClass {
 ### 2.5. `detail?: Map<string, any>`
 
 用于按需存储其他信息。例如对于**添加文件内容**可以保存添加内容，**切换终端**可以保存终端对应的进程号等等。
+
+## 3. 事件类型
+
+### 3.1 `OpenTextDocument` 打开文件
+
+`vscode.workspace.onDidOpenTextDocument`
+
+打开文本文件时触发
+
+```json
+  {
+    "id": 1,
+    "timeStamp": "2024-11-11 15:25:19.823",
+    "eventType": "Open text document",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/test.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.2 `CloseTextDocument` 关闭文件
+
+`vscode.workspace.onDidCloseTextDocument`
+
+关闭文本文件时触发
+
+```json
+  {
+    "id": 1,
+    "timeStamp": "2024-11-11 15:28:27.566",
+    "eventType": "Close text document",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/test.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.3 `ChangeTextDocument` 切换文件
+
+`vscode.window.onDidChangeActiveTextEditor`
+
+切换文本文件时触发，若当前关闭所有编辑视图，`editor` 值为 `undefined`
+
+切换编辑视图，会触发两次此事件，第一次 `editor` 值为 `undefined`
+
+插件不会记录 `editor` 值为 `undefined` 的情况
+
+```json
+  {
+    "id": 3,
+    "timeStamp": "2024-11-11 15:28:28.243",
+    "eventType": "Change text document",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/test2.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.4 `AddTextDocument` 添加文件内容
+
+`vscode.workspace.onDidChangeTextDocument`
+
+
+
+### 3.5 `DeleteTextDocument` 删除文件内容
+
+`vscode.workspace.onDidChangeTextDocument`
+
+
+
+### 3.6 `EditTextDocument` 修改文件内容
+
+`vscode.workspace.onDidChangeTextDocument`
+
+
+
+### 3.7 `RedoTextDocument` Redo文件内容
+
+`vscode.workspace.onDidChangeTextDocument`
+
+
+
+### 3.8 `UndoTextDocument` Undo文件内容
+
+`vscode.workspace.onDidChangeTextDocument`
+
+ 
+
+### 3.9 `CreateFile` 新建文件
+
+```typescript
+const filesWatcher = vscode.workspace.createFileSystemWatcher('**/*')
+filesWatcher.onDidCreate
+```
+
+
+
+```json
+  {
+    "id": 6,
+    "timeStamp": "2024-11-11 17:00:56.314",
+    "eventType": "Create file",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/new-f.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.10 `DeleteFile` 删除文件
+
+```typescript
+const filesWatcher = vscode.workspace.createFileSystemWatcher('**/*')
+filesWatcher.onDidDelete
+```
+
+
+
+```json
+  {
+    "id": 11,
+    "timeStamp": "2024-11-11 17:01:40.644",
+    "eventType": "Delete file",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/del.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.11 `SaveFile` 保存文件
+
+```typescript
+const filesWatcher = vscode.workspace.createFileSystemWatcher('**/*')
+filesWatcher.onDidChange
+```
+
+
+
+
+
+```json
+  {
+    "id": 10,
+    "timeStamp": "2024-11-11 17:01:09.189",
+    "eventType": "Save file",
+    "artifact": {
+      "name": "file:///c%3A/Users/hiron/Desktop/Code/new-f.c",
+      "type": "File"
+    },
+    "detail": {}
+  }
+```
+
+### 3.12 `SelectText` 选中文本
+
+`vscode.window.onDidChangeTextEditorSelection`
+
+鼠标、键盘、命令都可能触发该事件，仅仅移动光标，也会触发此事件
+
+插件进行了处理，只有选择的文本内容不为空时才记录
+
+**问题：**在使用鼠标或键盘进行选择时，选择区域每扩大一次就会记录一次选中，这使得记录内容暴增，考虑优化记录逻辑
+
+```json
+  {
+    "id": 30,
+    "timeStamp": "2024-11-11 16:54:41.866",
+    "eventType": "Select text",
+    "artifact": {
+      "name": "main()",
+      "type": "Function",
+      "hierarchy": [
+        {
+          "name": "file:///c%3A/Users/hiron/Desktop/Code/test2.c",
+          "type": "File",
+          "context": {
+            "position": {
+              "line": 4,
+              "character": 5
+            },
+            "scope": {
+              "file": {
+                "name": "test2.c",
+                "path": "c:\\Users\\hiron\\Desktop\\Code\\test2.c"
+              },
+              "method": {
+                "name": "main()"
+              }
+            }
+          }
+        },
+        {
+          "name": "main()",
+          "type": "Function",
+          "context": {
+            "position": {
+              "line": 4,
+              "character": 5
+            },
+            "scope": {
+              "file": {
+                "name": "test2.c",
+                "path": "c:\\Users\\hiron\\Desktop\\Code\\test2.c"
+              },
+              "method": {
+                "name": "main()"
+              }
+            }
+          }
+        }
+      ],
+      "context": {
+        "selection": {
+          "text": "scanf(\"%d%d\",",
+          "range": {
+            "start": {
+              "line": 4,
+              "character": 5
+            },
+            "end": {
+              "line": 4,
+              "character": 18
+            }
+          }
+        }
+      }
+    },
+    "detail": {}
+  }
+```
+
+### 3.13 `OpenTerminal` 打开终端
+
+`vscode.window.onDidOpenTerminal`
+
+打开终端时触发
+
+**问题：**当前无法记录打开终端的名称，待修复（原因可能是在获取名称时终端还没有初始化完成）
+
+```json
+  {
+    "id": 9,
+    "timeStamp": "2024-11-11 16:34:38.093",
+    "eventType": "Open terminal",
+    "artifact": {
+      "name": "",
+      "type": "Terminal"
+    },
+    "detail": {
+      "processId": 10424
+    }
+  },
+```
+
+### 3.14 `CloseTerminal` 关闭终端
+
+`vscode.window.onDidCloseTerminal`
+
+```json
+  {
+    "id": 21,
+    "timeStamp": "2024-11-11 16:35:09.610",
+    "eventType": "Close terminal",
+    "artifact": {
+      "name": "bash",
+      "type": "Terminal"
+    },
+    "detail": {
+      "processId": 18424
+    }
+  }
+```
+
+### 3.15 `ChangeActiveTerminal` 切换终端
+
+`vscode.window.onDidChangeActiveTerminal`
+
+```json
+  {
+    "id": 11,
+    "timeStamp": "2024-11-11 16:34:51.144",
+    "eventType": "Change active terminal",
+    "artifact": {
+      "name": "powershell",
+      "type": "Terminal"
+    },
+    "detail": {
+      "processId": 10424
+    }
+  }
+```
+
