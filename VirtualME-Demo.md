@@ -185,21 +185,6 @@ class OuterClass {
 
 用于按需存储其他信息。例如对于**添加文件内容**可以保存添加内容，**切换终端**可以保存终端对应的进程号等等。
 
-## 事件分类
-
-### 文件级事件
-
-| 编号 | 名称           | 符号                 | 是否实现 |
-| ---- | -------------- | -------------------- | -------- |
-| 1-1  | 打开文本文件   | `OpenTextDocument`   |          |
-| 1-2  | 关闭文本文件   | `CloseTextDocument`  |          |
-| 1-3  | 切换文本编辑器 | `ChangeTextDocument` |          |
-| 1-4  | 新建文件       | `CreateFile`         |          |
-| 1-5  | 删除文件       | `DeleteFile`         |          |
-| 1-6  | 保存文件       | `SaveFile`           |          |
-
-
-
 ## 3. 事件类型
 
 ### 3.1 `OpenTextDocument` 打开文件
@@ -310,8 +295,7 @@ filesWatcher.onDidCreate
     "artifact": {
       "name": "file:///c%3A/Users/hiron/Desktop/Code/new-f.c",
       "type": "File"
-    },
-    "detail": {}
+    }
   }
 ```
 
