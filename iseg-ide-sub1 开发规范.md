@@ -30,7 +30,7 @@
 > - https://www.cnblogs.com/kevin-ying/p/14329768.html
 > - https://cloud.tencent.com/developer/article/1936451
 >
-> <img src="./img/01.png" style="zoom: 50%;" />
+> <img src="./img/04.png" style="zoom: 50%;" />
 
 我们的项目实践，以下内容基于 Git 分支管理规范，但是进行了简化。
 
